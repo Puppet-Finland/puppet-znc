@@ -56,10 +56,11 @@ define znc::instance
         # Make sure ZNC is running as suggested in ZNC documentation
         cron { "znc-autostart-${system_user}":
             ensure      => $ensure,
-            command     => "ps x|grep -E \" znc\$\" > /dev/null || ${::znc::params::znc_cmd}",
+            command     => "${::znc::params::znc_cmd} 2>&1 > /dev/null",
             user        => $system_user,
             minute      => '*/10',
-            environment => "MAILTO=${email}",
+            environment => [ "MAILTO=${email}",
+                             "PATH=/bin:/usr/bin" ],
         }
     }
 
