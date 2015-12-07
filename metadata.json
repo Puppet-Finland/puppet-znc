@@ -1,0 +1,12 @@
+{
+  "name": "puppetfinland-znc",
+  "version": "0.1.0",
+  "author": "Puppet-Finland team",
+  "license": "BSD license",
+  "summary": "Setup znc",
+  "source": "https://github.com/Puppet-Finland/znc.git",
+  "project_page": "https://github.com/Puppet-Finland/znc",
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.0.0" }
+  ]
+}
