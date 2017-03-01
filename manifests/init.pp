@@ -30,17 +30,13 @@
 #
 class znc
 (
-    $manage = true,
-    $manage_packetfilter = true,
-    $ensure = 'present',
-    $instances = {}
+    Boolean $manage = true,
+    Boolean $manage_packetfilter = true,
+            $ensure = 'present',
+    Hash    $instances = {}
 
 ) inherits znc::params
 {
-
-validate_bool($manage)
-validate_bool($manage_packetfilter)
-validate_re("${ensure}", '^(present|running|absent)$')
 
 if $manage {
 

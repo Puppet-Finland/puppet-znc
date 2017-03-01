@@ -4,7 +4,7 @@
 #
 class znc::install
 (
-    $ensure
+    Enum['present','absent'] $ensure
 
 ) inherits znc::params
 {

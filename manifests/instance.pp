@@ -34,21 +34,19 @@
 #
 define znc::instance
 (
-    $irc_port = undef,
-    $web_port = undef,
-    $web_allow_ipv4 = '127.0.0.1',
-    $web_allow_ipv6 = '::1',
-    $autostart = true,
-    $ensure = 'present',
-    $email = $::servermonitor
+    Optional[Integer]        $irc_port = undef,
+    Optional[Integer]        $web_port = undef,
+    String                   $web_allow_ipv4 = '127.0.0.1',
+    String                   $web_allow_ipv6 = '::1',
+    Boolean                  $autostart = true,
+    Enum['present','absent'] $ensure = 'present',
+    String                   $email = $::servermonitor
 
 )
 {
     $system_user = $title
 
     validate_string($system_user)
-    validate_re("${ensure}", '^(present|absent)$')
-    validate_bool($autostart)
 
     include ::znc::params
 
@@ -60,15 +58,12 @@ define znc::instance
             user        => $system_user,
             minute      => '*/10',
             environment => [ "MAILTO=${email}",
-                             "PATH=/bin:/usr/bin" ],
+                            'PATH=/bin:/usr/bin' ],
         }
     }
 
     # Add packet filtering rules for this instance
     if $::znc::manage_packetfilter {
-
-        validate_integer($irc_port)
-        validate_integer($web_port)
 
         Firewall {
             ensure   => $ensure,
@@ -78,27 +73,29 @@ define znc::instance
         }
 
         # Rules for IRC connections
-        firewall { "020 ipv4 accept ${system_user} znc irc on port ${irc_port}":
+        @firewall { "020 ipv4 accept ${system_user} znc irc on port ${irc_port}":
             provider => 'iptables',
             dport    => $irc_port,
+            tag      => 'default',
         }
-        firewall { "020 ipv6 accept ${system_user} znc irc on port ${irc_port}":
+        @firewall { "020 ipv6 accept ${system_user} znc irc on port ${irc_port}":
             provider => 'ip6tables',
             dport    => $irc_port,
+            tag      => 'default',
         }
 
         # Rules for web (admin) connections
-        firewall { "020 ipv4 accept ${system_user} znc webadmin on port ${web_port}":
+        @firewall { "020 ipv4 accept ${system_user} znc webadmin on port ${web_port}":
             provider => 'iptables',
             dport    => $web_port,
             source   => $web_allow_ipv4,
+            tag      => 'default',
         }
-        firewall { "020 ipv6 accept ${system_user} znc webadmin on port ${web_port}":
+        @firewall { "020 ipv6 accept ${system_user} znc webadmin on port ${web_port}":
             provider => 'ip6tables',
             dport    => $web_port,
             source   => $web_allow_ipv6,
+            tag      => 'default',
         }
-
-
     }
 }
