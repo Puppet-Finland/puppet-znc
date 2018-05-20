@@ -1,23 +1,19 @@
 # znc
 
-A Puppet module for managing znc
+A Puppet module for managing ZNC IRC bouncer on a per-user basis. Has built-in 
+firewall support (IPv4 and IPv6).
 
 # Module usage
 
-* [Class: znc](manifests/init.pp)
-* [Define: znc::instance](manifests/instance.pp)
+    include ::znc
+    
+    # Add a bouncer instance for user "john"
+    znc::instance { 'john':
+        irc_port       => 4329,
+        web_port       => 5329,
+        web_allow_ipv4 => '10.0.0.0/8',
+        autostart      => true,
+    }
 
-# Dependencies
-
-See [metadata.json](metadata.json).
-
-# Operating system support
-
-This module has been tested on
-
-* Ubuntu 14.04
-
-Any *NIX-style operating system should work out of the box or with small
-modifications.
-
-For details see [params.pp](manifests/params.pp).
+For details see [init.pp]((manifests/init.pp) and 
+[instance.pp](manifests/instance.pp).

@@ -2,7 +2,7 @@
   "name": "puppetfinland-znc",
   "version": "1.0.0",
   "author": "Puppet-Finland team",
-  "summary": "Setup ZNC IRC bouncer",
+  "summary": "Setup ZNC IRC bouncer and optionally firewall rules for it",
   "license": "BSD-2-Clause",
   "source": "https://github.com/Puppet-Finland/puppet-znc.git",
   "project_page": "https://github.com/Puppet-Finland/puppet-znc",
