@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-znc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Puppet-Finland team",
   "summary": "Setup ZNC IRC bouncer and optionally firewall rules for it",
   "license": "BSD-2-Clause",
