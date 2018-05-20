@@ -2,7 +2,7 @@
   "name": "puppetfinland-znc",
   "version": "1.0.0",
   "author": "Puppet-Finland team",
-  "license": "BSD license",
+  "license": "BSD-2-Clause",
   "summary": "Setup znc",
   "source": "https://github.com/Puppet-Finland/znc.git",
   "project_page": "https://github.com/Puppet-Finland/znc",
