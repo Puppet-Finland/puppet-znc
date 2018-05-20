@@ -2,11 +2,31 @@
   "name": "puppetfinland-znc",
   "version": "1.0.0",
   "author": "Puppet-Finland team",
+  "summary": "Setup ZNC IRC bouncer",
   "license": "BSD-2-Clause",
-  "summary": "Setup znc",
-  "source": "https://github.com/Puppet-Finland/znc.git",
-  "project_page": "https://github.com/Puppet-Finland/znc",
+  "source": "https://github.com/Puppet-Finland/puppet-znc.git",
+  "project_page": "https://github.com/Puppet-Finland/puppet-znc",
   "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.0.0" }
-  ]
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.7.0 < 6.0.0"
+    }
+  ],
+  "pdk-version": "1.4.1",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.4.1-0-g52adbbb"
 }
